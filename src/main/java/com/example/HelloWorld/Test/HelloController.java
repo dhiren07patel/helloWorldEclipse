@@ -13,7 +13,7 @@ public class HelloController {
 	}
 
 	@GetMapping("/getEclipse")
-	public String index() {
+	public String getEclipse() {
 		System.out.println("\"Greetings from Spring Boot Get Eclipse!\"");
 		return "Greetings from Spring Boot Get Eclipse!";
 	}
