@@ -8,13 +8,13 @@ public class HelloController {
 
 	@GetMapping("/")
 	public String index() {
-		System.out.println("1");
-		return "2";
+		System.out.println("Get Eclipse Hello World One / method");
+		return "Get Eclipse Hello World One / method";
 	}
 
 	@GetMapping("/getEclipse")
 	public String getEclipse() {
-		System.out.println("3");
-		return "4";
+		System.out.println("Get Eclipse Hello World One /getEclipse method");
+		return "Get Eclipse Hello World One /getEclipse method";
 	}
 }
