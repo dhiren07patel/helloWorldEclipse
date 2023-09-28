@@ -39,3 +39,15 @@ steps:
   - 'deploy'
   waitFor: ['push-image-to-container-registry']
   id: 'deploy-to-app-engine'
+  
+
+# steps for build the image in the krala-repo
+#steps:
+#  - name: 'gcr.io/cloud-builders/docker'
+#    args: ['build', '-t', 'gcr.io/klara-repo/helloworldeclipse:$SHORT_SHA', '.']
+#
+#  - name: 'gcr.io/cloud-builders/docker'
+#    args: ['push', 'gcr.io/klara-repo/helloworldeclipse:$SHORT_SHA']
+#
+#images:
+#  - 'gcr.io/klara-repo/helloworldeclipse:$SHORT_SHA'
