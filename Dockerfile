@@ -7,7 +7,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update && apt-get install -y apt-transport-https \
- && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
+# && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
  && echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/hashicorp.list \
  && apt-get update -y \
  && apt-get install unzip wget -y \ 
