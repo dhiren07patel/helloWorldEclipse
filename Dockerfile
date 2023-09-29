@@ -5,13 +5,15 @@
 
 
 FROM ubuntu:latest
-
-RUN apt-get update && apt-get install -y apt-transport-https \
-# && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
- && echo "deb [signed-by=/usr/share/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee -a /etc/apt/sources.list.d/hashicorp.list \
- && apt-get update -y \
- && apt-get install unzip wget -y \ 
- && wget https://releases.hashicorp.com/terraform/latest/terraform_latest_linux_amd64.zip \
- && unzip terraform_latest_linux_amd64.zip \
- && mv terraform /usr/local/bin/ \
- && chmod +x /usr/local/bin/terraform
+ 
+RUN apt-get update && apt-get install -y gnupg software-properties-common \
+    && wget -O- https://apt.releases.hashicorp.com/gpg | \
+    && gpg --dearmor | \
+    && tee /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+	&& gpg --no-default-keyring \
+    && --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+    && --fingerprint \
+	&& echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+    && tee /etc/apt/sources.list.d/hashicorp.list \
+	&& apt update \
+	&& apt-get install terraform
