@@ -5,32 +5,10 @@
 
 FROM ubuntu:latest
 
-ARG TERRAFORM_VERSION=1.5.7
-
-RUN \
-	# Update
-	apt-get update -y && \
-	# Install dependencies
-	apt-get install unzip wget -y
-
-################################
-# Install Terraform
-################################
-
-# Download terraform for linux
-RUN wget --progress=dot:mega https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-
-RUN \
-	# Unzip
-	unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
-	# Move to local bin
+RUN apt-get update && \
+	apt-get install -y unzip wget && \
+	wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip && \
+	unzip terraform_1.5.7_linux_amd64.zip && \
 	mv terraform /usr/local/bin/ && \
-	# Make it executable
 	chmod +x /usr/local/bin/terraform && \
-	# Check that it's installed
 	terraform --version
-
-CMD ["terraform", "--version"]
-	
-
-
