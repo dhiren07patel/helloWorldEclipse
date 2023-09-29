@@ -6,7 +6,7 @@
 
 FROM ubuntu:latest
  
-RUN apt-get update && apt-get install -y gnupg software-properties-common \
+RUN apt-get update && apt-get install unzip wget -y \
     && wget -O- https://apt.releases.hashicorp.com/gpg | \
     && gpg --dearmor | \
     && tee /usr/share/keyrings/hashicorp-archive-keyring.gpg \
