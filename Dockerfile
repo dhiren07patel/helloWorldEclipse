@@ -5,10 +5,10 @@
 
 FROM ubuntu:latest
 
-RUN apt-get update && \
-	apt-get install -y unzip wget && \
-	wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip && \
-	unzip terraform_1.5.7_linux_amd64.zip && \
-	mv terraform /usr/local/bin/ && \
-	chmod +x /usr/local/bin/terraform && \
-	terraform --version
+RUN apt-get update \
+	&& apt-get install -y unzip wget \
+	&& wget https://releases.hashicorp.com/terraform/1.5.7/terraform_1.5.7_linux_amd64.zip \
+	&& unzip terraform_1.5.7_linux_amd64.zip \
+	&& mv terraform /usr/local/bin/ \
+	&& chmod +x /usr/local/bin/terraform \
+	&& terraform --version
