@@ -20,7 +20,7 @@ resource "google_pubsub_subscription" "helloWorldEclise-service-push-sub" {
   }
 
   push_config {
-    push_endpoint = "https://helloworldeclipse-service-dot-klara-epost-prod-doc2epost.oa.r.appspot.com"
+    push_endpoint = "https://helloworldeclipse-service-dot-klara-comm-nonprod.oa.r.appspot.com/getEclipse"
 
     attributes = {
       x-goog-version = "v1"
