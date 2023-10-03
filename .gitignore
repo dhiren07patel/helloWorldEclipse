@@ -1,5 +1,7 @@
 HELP.md
 
+/klara-comm-nonprod-b8db0085dec5.json
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
