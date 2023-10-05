@@ -1,7 +1,8 @@
-#FROM openjdk:17
-#EXPOSE 8080
-#ADD target/spring-boot-docker.jar spring-boot-docker.jar
-#ENTRYPOINT [ "java", "-jar", "/spring-boot-docker.jar" ]
+FROM openjdk:17
+EXPOSE 8080
+ADD target/spring-boot-docker.jar spring-boot-docker.jar
+ENTRYPOINT [ "java", "-jar", "/spring-boot-docker.jar" ]
+
 
 FROM ubuntu:latest
 
@@ -12,6 +13,8 @@ RUN apt-get update \
 	&& mv terraform /usr/local/bin/ \
 	&& chmod +x /usr/local/bin/terraform \
 	&& terraform --version
+
+
 
 # Update the package lists and install essential tools
 #RUN apt-get update \
