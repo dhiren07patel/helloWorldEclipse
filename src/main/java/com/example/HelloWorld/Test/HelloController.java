@@ -9,12 +9,12 @@ public class HelloController {
 	@GetMapping("/")
 	public String index() {
 		System.out.println("Get Eclipse Hello World / method");
-		return "Get Eclipse Hello World One / method";
+		return "Get Eclipse Hello World One / method terraform";
 	}
 
 	@GetMapping("/getEclipse")
 	public String getEclipse() {
 		System.out.println("Get Eclipse Hello World /getEclipse method");
-		return "Get Eclipse Hello World One /getEclipse method";
+		return "Get Eclipse Hello World One /getEclipse method terraform";
 	}
 }
