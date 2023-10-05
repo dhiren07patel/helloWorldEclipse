@@ -33,12 +33,12 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/helloworldeclipse:$COMMIT_SHA']
   id: 'push-image-to-container-registry'
   waitFor: ['build-image-helloworldeclipse']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'app'
-  - 'deploy'
-  waitFor: ['push-image-to-container-registry']
-  id: 'deploy-to-app-engine'
+#- name: 'gcr.io/cloud-builders/gcloud'
+#  args:
+#  - 'app'
+#  - 'deploy'
+#  waitFor: ['push-image-to-container-registry']
+#  id: 'deploy-to-app-engine'
   
 
 # steps for build the image in the krala-repo
