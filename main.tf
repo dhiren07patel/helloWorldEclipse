@@ -12,7 +12,7 @@ provider "google" {
 #   template {
 #     spec {
 #       containers {
-#         image = "gcr.io/klara-comm-nonprod/helloworldeclipse@sha256:a239b48a587284200ae8cab2c9dbd4da7fa7aa64b56760b491eced0344b69e06"
+#         image = "gcr.io/klara-comm-nonprod/helloworldeclipse:latest"
 #       }
 #     }
 #   }
