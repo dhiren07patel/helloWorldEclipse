@@ -8,7 +8,7 @@ COPY ./src /
 RUN mvn clean package 	
 
 # the second stage of our build will use open jdk 17 on alpine 
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:17-jre-alpine
 
 # copy only the artifacts we need from the first stage and discard the rest 
 # COPY --from=MAVEN_BUILD /docker-multi-stage-build-demo/target/demo-0.0.1-SNAPSHOT.jar /demo.jar 
