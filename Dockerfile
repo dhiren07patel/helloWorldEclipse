@@ -1,21 +1,31 @@
-FROM eclipse-temurin:17-jdk-alpine AS MAVEN_BUILD 
 
-# copy the pom and src code to the container 
-COPY ./pom.xml /
-COPY ./src /
+# Use an official Maven runtime as a parent image
+FROM maven:3.8.2-openjdk-17 AS build
 
-# package our application code 
-RUN mvn clean package 	
+# Set the working directory in the container
+WORKDIR /app
 
-# the second stage of our build will use open jdk 17 on alpine 
-FROM openjdk:17-jre-alpine
+# Copy the project's POM file and download dependencies
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# copy only the artifacts we need from the first stage and discard the rest 
-# COPY --from=MAVEN_BUILD /docker-multi-stage-build-demo/target/demo-0.0.1-SNAPSHOT.jar /demo.jar 
-COPY --from=MAVEN_BUILD /target/spring-boot-docker.jar /spring-boot-docker.jar
+# Copy the rest of the application code to the container
+COPY src ./src
 
-# set the startup command to execute the jar 
-CMD ["java", "-jar", "/spring-boot-docker.jar"] 
+# Build the application
+RUN mvn package
+
+# Use a smaller base image for the runtime
+FROM openjdk:17-jre-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the JAR file from the build container
+COPY --from=build /app/target/spring-boot-docker.jar .
+
+# Specify the command to run your application
+CMD ["java", "-jar", "spring-boot-docker.jar"]
 
 #ENV PORT=8080
 #ADD target/spring-boot-docker.jar spring-boot-docker.jar
