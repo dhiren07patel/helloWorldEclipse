@@ -1,19 +1,32 @@
 provider "google" {
   credentials = file("klara-comm-nonprod-b8db0085dec5.json")
   project     = "klara-comm-nonprod"
-  region      = "us-central1"  # Adjust to your desired region
+  region      = "us-east4" # Adjust to your desired region
 }
 
-resource "google_cloud_run_service" "run_service" {
-  name = "helloWorldEclipse"
-  location = "us-europe-west1"
+# resource "google_cloud_run_service" "helloworldeclipse" {
+#   name     = "helloworldeclipse"
+#   location = "us-east4"
+#   project  = "klara-comm-nonprod"
+
+#   template {
+#     spec {
+#       containers {
+#         image = "gcr.io/klara-comm-nonprod/helloworldeclipse@sha256:a239b48a587284200ae8cab2c9dbd4da7fa7aa64b56760b491eced0344b69e06"
+#       }
+#     }
+#   }
+# }
+
+resource "google_cloud_run_v2_service" "helloworldeclipse" {
+  name     = "helloworldeclipse"
+  location = "us-east4"
+  project  = "klara-comm-nonprod"
 
   template {
-	spec {
-  	containers {
-    	image = "gcr.io/klara-comm-nonprod/helloworldeclipse@sha256:eb4bbb84867ccb6f9e0db68f175034a02f2d5ca1badd5af2ad360ca5fefbd19d"
-  	}
-	}
+    containers {
+      image = "gcr.io/klara-comm-nonprod/helloworldeclipse@sha256:a239b48a587284200ae8cab2c9dbd4da7fa7aa64b56760b491eced0344b69e06"
+    }
   }
 }
 
